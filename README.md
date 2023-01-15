@@ -4,10 +4,20 @@ Windows 11 configuration, packages and tips and tricks
 ## Install packages with scoop
 
 ```
+# install git
 scoop install git
+git config --global credential.helper manager
+
+# install nice powershell prompt
 scoop install starship
+
+# install nodejs version manager
 scoop install volta
+
+# install sudo for global install with admin permissions
 scoop install sudo
+
+# add nerdfonts bucket at install fonts with glyphs
 scoop bucket add nerd-fonts
 sudo scoop install -g CascadiaCode-NF-Mono
 ```
