@@ -20,6 +20,26 @@ scoop install sudo
 # add nerdfonts bucket at install fonts with glyphs
 scoop bucket add nerd-fonts
 sudo scoop install -g CascadiaCode-NF-Mono
+
+# add extras bucket
+scoop bucket add extras
+
+# install vscode
+scoop install vscode
+reg import "C:\Users\bernt\scoop\apps\vscode\current\install-associations.reg"
+
+# install notion
+scoop install notion
+
+# install kubernetes cli tools
+scoop install kubectl kubectx kubens k9s
+
+# install lens (kubernetes gui)
+scoop install lens
+
+# install gitkraken
+scoop install gitkraken
+
 ```
 
 ## Powershell Settings
