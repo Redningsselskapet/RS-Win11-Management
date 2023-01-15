@@ -13,7 +13,10 @@ sudo scoop install -g CascadiaCode-NF-Mono
 ```
 
 ## Powershell Settings
+```powershell
+code $profile
 ```
+```powershell
 Invoke-Expression (&starship init powershell)
 (& volta completions powershell) | Out-String | Invoke-Expression
 $PSStyle.FileInfo.Directory = "`e[34m"
