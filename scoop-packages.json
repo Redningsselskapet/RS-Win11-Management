@@ -1,0 +1,122 @@
+{
+    "buckets": [
+        {
+            "Name": "extras",
+            "Source": "https://github.com/ScoopInstaller/Extras",
+            "Updated": "2023-01-15T21:24:24+01:00",
+            "Manifests": 1756
+        },
+        {
+            "Name": "main",
+            "Source": "~\\scoop\\buckets\\main",
+            "Updated": "2023-01-15T23:14:44.8460029+01:00",
+            "Manifests": 1142
+        },
+        {
+            "Name": "nerd-fonts",
+            "Source": "https://github.com/matthewjberger/scoop-nerd-fonts",
+            "Updated": "2023-01-14T17:14:31+01:00",
+            "Manifests": 214
+        }
+    ],
+    "apps": [
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "7zip",
+            "Updated": "2023-01-15T23:47:20.8716701+01:00",
+            "Version": "22.01"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "git",
+            "Updated": "2023-01-15T23:47:32.1536933+01:00",
+            "Version": "2.39.0.windows.2"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "gitkraken",
+            "Updated": "2023-01-15T23:58:41.5194716+01:00",
+            "Version": "9.0.1"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "k9s",
+            "Updated": "2023-01-15T23:54:43.280206+01:00",
+            "Version": "0.26.7"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "kubectl",
+            "Updated": "2023-01-15T23:54:48.4147502+01:00",
+            "Version": "1.26.0"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "kubectx",
+            "Updated": "2023-01-15T23:54:49.2439547+01:00",
+            "Version": "0.9.4"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "kubens",
+            "Updated": "2023-01-15T23:54:52.258706+01:00",
+            "Version": "0.9.4"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "lens",
+            "Updated": "2023-01-15T23:57:55.821134+01:00",
+            "Version": "2023.1.110749-latest"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "notion",
+            "Updated": "2023-01-15T23:53:50.0749563+01:00",
+            "Version": "2.0.39"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "starship",
+            "Updated": "2023-01-15T23:48:06.1948586+01:00",
+            "Version": "1.12.0"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "sudo",
+            "Updated": "2023-01-15T23:48:39.9568043+01:00",
+            "Version": "0.2020.01.26"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "volta",
+            "Updated": "2023-01-15T23:48:33.0801633+01:00",
+            "Version": "1.1.0"
+        },
+        {
+            "Info": "",
+            "Source": "extras",
+            "Name": "vscode",
+            "Updated": "2023-01-15T23:52:33.8931721+01:00",
+            "Version": "1.74.3"
+        },
+        {
+            "Info": "Global install",
+            "Source": "nerd-fonts",
+            "Name": "CascadiaCode-NF-Mono",
+            "Updated": "2023-01-15T23:49:34.4806963+01:00",
+            "Version": "2.2.2"
+        }
+    ]
+}
