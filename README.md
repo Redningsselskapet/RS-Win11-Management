@@ -41,6 +41,10 @@ scoop install lens
 scoop install gitkraken
 
 ```
+### import a package list with scoop
+```
+scoop import https://
+```
 
 ## Powershell Settings
 ```powershell
