@@ -3,13 +3,13 @@
         {
             "Name": "extras",
             "Source": "https://github.com/ScoopInstaller/Extras",
-            "Updated": "2023-01-15T21:24:24+01:00",
+            "Updated": "2023-01-16T17:29:30+01:00",
             "Manifests": 1756
         },
         {
             "Name": "main",
-            "Source": "~\\scoop\\buckets\\main",
-            "Updated": "2023-01-15T23:14:44.8460029+01:00",
+            "Source": "https://github.com/ScoopInstaller/Main",
+            "Updated": "2023-01-16T17:31:13+01:00",
             "Manifests": 1142
         },
         {
@@ -26,6 +26,13 @@
             "Name": "7zip",
             "Updated": "2023-01-15T23:47:20.8716701+01:00",
             "Version": "22.01"
+        },
+        {
+            "Info": "",
+            "Source": "main",
+            "Name": "azure-cli",
+            "Updated": "2023-01-16T18:50:14.5442665+01:00",
+            "Version": "2.44.1"
         },
         {
             "Info": "",
