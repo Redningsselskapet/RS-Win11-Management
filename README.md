@@ -43,7 +43,7 @@ scoop install gitkraken
 ```
 ### import a package list with scoop
 ```
-scoop import https://
+scoop import https://raw.githubusercontent.com/Redningsselskapet/RS-Win11-Management/master/scoop-packages.json
 ```
 
 ## Powershell Settings
