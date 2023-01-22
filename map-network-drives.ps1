@@ -1,10 +1,6 @@
 $pathFelles = "\\15hovfil01.nssr.local\felles$"
 $pathHome = "\\15hovfil01.nssr.local\home$\$env:username"
 
-$scriptUrl = "https://raw.githubusercontent.com/Redningsselskapet/RS-Win11-Management/master/map-network-drives.ps1"
-$scriptPath = "c:\Users\$env:UserName\map-network-drives.ps1"
-
-
 function mapNetworkDrive([string]$Name, [string]$Path) {
 
     $MappedDrive = (Get-PSDrive -Name $Name -ErrorAction SilentlyContinue)
@@ -24,12 +20,10 @@ function mapNetworkDrive([string]$Name, [string]$Path) {
     }
 }
 
-
-$scriptExist = Test-Path -Path $scriptPath -PathType Leaf
-if (-not($scriptExist)) {
-    Invoke-RestMethod $scriptUrl -OutFile $scriptPath
-}
 mapNetworkDrive -Name "U" -Path $pathFelles
 mapNetworkDrive -Name "Z" -Path $pathHome
+
+
+
 
 
