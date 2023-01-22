@@ -39,7 +39,9 @@ $trigger = New-ScheduledTaskTrigger -AtLogon
 $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-ExecutionPolicy Bypass $scriptPath"
 $delay = New-TimeSpan -Seconds 30
 $task = Get-ScheduledTask -TaskName $taskName -TaskPath $taskPath -ErrorAction SilentlyContinue -OutVariable task
+$principal = New-ScheduledTaskPrincipal -GroupId "BUILTIN\Administratorer" -RunLevel Highest
+$settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries 
 
 if (-not($task)) {
-    Register-ScheduledTask -Action $action -Trigger $trigger -TaskPath $taskPath -TaskName $taskName -Description "Maps Local Network Drives" -User "BUILTIN/Administrators" -RunLevel Highest
+    Register-ScheduledTask -Action $action -Trigger $trigger -TaskPath $taskPath -TaskName $taskName -Description "Maps Local Network Drives" -Principal $principal -Settings $settings
 }
