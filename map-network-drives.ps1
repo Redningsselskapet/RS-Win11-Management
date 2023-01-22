@@ -1,7 +1,7 @@
 $pathFelles = "\\15hovfil01.nssr.local\felles$"
 $pathHome = "\\15hovfil01.nssr.local\home$\$env:username"
 
-$scriptUrl = "https://raw.githubusercontent.com/Redningsselskapet/RS-Win11-Management/master/map-basic-network-drives.ps1"
+$scriptUrl = "https://raw.githubusercontent.com/Redningsselskapet/RS-Win11-Management/master/map-network-drives.ps1"
 $scriptPath = "c:\Users\$env:UserName\map-network-drives.ps1"
 
 
@@ -41,5 +41,5 @@ $delay = New-TimeSpan -Seconds 30
 $task = Get-ScheduledTask -TaskName $taskName -TaskPath $taskPath -ErrorAction SilentlyContinue -OutVariable task
 
 if (-not($task)) {
-    Register-ScheduledTask -Action $action -Trigger $trigger -TaskPath $taskPath -TaskName $taskName -Description "Maps Local Network Drives"
+    Register-ScheduledTask -Action $action -Trigger $trigger -TaskPath $taskPath -TaskName $taskName -Description "Maps Local Network Drives" -User "BUILTIN/Administrators" -RunLevel Highest
 }
