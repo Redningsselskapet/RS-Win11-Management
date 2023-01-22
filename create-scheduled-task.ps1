@@ -1,5 +1,3 @@
-Write-Host "Ugly workaround :( I am sorry on behalf of the poor Microsoft."
-Start-Sleep 10
 $scriptUrl = "https://raw.githubusercontent.com/Redningsselskapet/RS-Win11-Management/master/map-network-drives.ps1"
 $scriptPath = "c:\map-network-drives.ps1"
 

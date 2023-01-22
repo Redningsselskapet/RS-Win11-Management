@@ -1,3 +1,6 @@
+Write-Host "Ugly workaround :( I am sorry on behalf of the poor Microsoft."
+Start-Sleep 10
+
 $pathFelles = "\\15hovfil01.nssr.local\felles$"
 $pathHome = "\\15hovfil01.nssr.local\home$\$env:username"
 
