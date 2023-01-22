@@ -17,6 +17,6 @@ $principal = New-ScheduledTaskPrincipal -GroupId "BUILTIN\Administratorer" -RunL
 $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries 
 
 if (-not($task)) {
-    Register-ScheduledTask -Action $action -Trigger $trigger -TaskPath $taskPath -TaskName $taskName -Description "Maps Local Network Drives" -Principal $principal -Settings $settings
+    Register-ScheduledTask -Action $action -Trigger $trigger -TaskPath $taskPath -TaskName $taskName -Description "Maps Local Network Drives"
 }
 
