@@ -25,7 +25,7 @@ function mapNetworkDrive([string]$Name, [string]$Path) {
 mapNetworkDrive -Name "U" -Path $pathFelles
 mapNetworkDrive -Name "Z" -Path $pathHome
 mapNetworkDrive -Name "M" -Path $pathMaler
-mapNetworkDrive -Name "O" -Path $pathHome
+mapNetworkDrive -Name "O" -Path $pathOrgys
 
 
 
