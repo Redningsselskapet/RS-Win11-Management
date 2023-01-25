@@ -1,5 +1,7 @@
 $pathFelles = "\\15hovfil01.nssr.local\felles$"
 $pathHome = "\\15hovfil01.nssr.local\home$\$env:username"
+$pathOrgys = "\\15hovorg01.nssr.local\ekstern"
+$pathMaler = "\\15hovfil01.nssr.local\maler"
 
 function mapNetworkDrive([string]$Name, [string]$Path) {
 
@@ -22,7 +24,8 @@ function mapNetworkDrive([string]$Name, [string]$Path) {
 
 mapNetworkDrive -Name "U" -Path $pathFelles
 mapNetworkDrive -Name "Z" -Path $pathHome
-
+mapNetworkDrive -Name "M" -Path $pathMaler
+mapNetworkDrive -Name "O" -Path $pathHome
 
 
 
