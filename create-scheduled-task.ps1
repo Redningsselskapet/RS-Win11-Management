@@ -1,11 +1,8 @@
 $scriptUrl = "https://raw.githubusercontent.com/Redningsselskapet/RS-Win11-Management/master/map-network-drives.ps1"
 $scriptPath = "c:\map-network-drives.ps1"
 
-# Consider force overwrite to push changes to script
 $scriptExist = Test-Path -Path $scriptPath -PathType Leaf
-if (-not($scriptExist)) {
-    Invoke-RestMethod $scriptUrl -OutFile $scriptPath
-}
+Invoke-RestMethod $scriptUrl -OutFile $scriptPath
 
 $taskPath = "\Redningsselskapet\"
 $taskName = "Map Network Drives"
