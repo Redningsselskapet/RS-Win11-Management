@@ -1,5 +1,5 @@
-$scriptUrl = "https://raw.githubusercontent.com/Redningsselskapet/RS-Win11-Management/master/map-network-drives.ps1"
-$scriptPath = "c:\map-network-drives.ps1"
+$scriptUrl = "https://raw.githubusercontent.com/Redningsselskapet/RS-Win11-Management/master/login.ps1"
+$scriptPath = "c:\login.ps1"
 
 $scriptExist = Test-Path -Path $scriptPath -PathType Leaf
 Invoke-RestMethod $scriptUrl -OutFile $scriptPath
