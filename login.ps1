@@ -2,10 +2,8 @@
 
 Write-Host "Running Redningsselskapet Login Script"
 
-# Install Scoop
-irm get.scoop.sh | iex
-
 # Update Scoop
-scoop update *
+if (Test-Path "$env:USERPROFILE\scoop") { scoop update *}
+
 
 
