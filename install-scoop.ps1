@@ -1,5 +1,5 @@
 if (-not(Get-Command scoop)) {
-  iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
+  Invoke-Expression "& {$(Invoke-RestMethod get.scoop.sh)} -RunAsAdmin"
 }
 scoop update
 scoop install git
