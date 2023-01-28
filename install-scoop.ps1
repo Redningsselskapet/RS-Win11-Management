@@ -4,7 +4,8 @@ if (-not(Get-Command scoop)) {
 scoop update
 scoop install git
 scoop install starship
-scoop install Volta
+scoop install volta
+
 
 if (-not(Test-Path $profile)) {
   New-Item -Path $profile -ItemType File -Force
