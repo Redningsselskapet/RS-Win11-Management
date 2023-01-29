@@ -5,6 +5,11 @@ scoop update
 scoop install git
 scoop install starship
 scoop install volta
+scoop bucket add nerd-fonts
+sudo scoop install -g CascadiaCode-NF-Mono
+
+# Caution: This will overwrite your existing Windows Terminal settings
+Invoke-RestMethod -Uri https://raw.githubusercontent.com/Redningsselskapet/RS-Win11-Management/master/settings.json -OutFile $env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
 
 if (-not(Test-Path $profile)) {
   New-Item -Path $profile -ItemType File -Force
