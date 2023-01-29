@@ -10,9 +10,9 @@ $delay = New-TimeSpan -Seconds 30
 $trigger = New-ScheduledTaskTrigger -AtLogon -RandomDelay $delay 
 $trigger.Delay = "PT30S"
 $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-ExecutionPolicy Bypass $scriptPath"
-$task = Get-ScheduledTask -TaskName $taskName -TaskPath $taskPath -ErrorAction SilentlyContinue -OutVariable task
+$task = Get-ScheduledTask -TaskName $taskName -TaskPath $taskPath -ErrorAction SilentlyContinue -OutVariable task 
 $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries
-$principal = New-ScheduledTaskPrincipal -GroupId "BUILTIN\Brukere"
+$principal = New-ScheduledTaskPrincipal -GroupId "BUILTIN\Brukere" -RunLevel Highest
 
 if (-not($task)) {
     Register-ScheduledTask -Action $action -Trigger $trigger -TaskPath $taskPath -TaskName $taskName -Description "Maps Local Network Drives" -Settings $settings -Principal $principal
