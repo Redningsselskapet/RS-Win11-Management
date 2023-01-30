@@ -1,4 +1,4 @@
-"Uninstalling Personal Teams..." >> c:\intune.log
+"Removing Personal Teams..." >> c:\intune.log
 If ($null -eq (Get-AppxPackage -Name MicrosoftTeams -AllUsers)) {
     Write-Output “Microsoft Teams Personal App not present”
 }
