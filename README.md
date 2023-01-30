@@ -46,11 +46,11 @@ scoop install gitkraken
 scoop import https://raw.githubusercontent.com/Redningsselskapet/RS-Win11-Management/master/scoop-packages.json
 ```
 ## Install Package with Chocolatey
-Install choco
+### Install choco
 ```
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('http://internal/odata/repo/ChocolateyInstall.ps1'))
 ```
-Install chocolatey packages
+### Install chocolatey packages
 ```powershell
 # install git
 choco install -y git
