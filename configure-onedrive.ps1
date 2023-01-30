@@ -1,3 +1,4 @@
+"Configuring OneDrive for Business..." >> c:\intune.log
 $HKLMregistryPath = 'HKLM:\SOFTWARE\Policies\Microsoft\OneDrive'##Path to HKLM keys
 $DiskSizeregistryPath = 'HKLM:\SOFTWARE\Policies\Microsoft\OneDrive\DiskSpaceCheckThresholdMB'##Path to max disk size key
 $TenantGUID = '5ca36054-8791-4403-8ebf-ebf9b3281457'
