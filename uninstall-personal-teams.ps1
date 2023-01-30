@@ -1,6 +1,25 @@
 "Uninstalling Personal Teams..." >> c:\intune.log
-Get-AppxPackage MicrosoftTeams*|Remove-AppxPackage -AllUsers
-Get-AppxProvisionedPackage -online | where-object {$_.PackageName -like "*MicrosoftTeams*"} | Remove-AppxProvisionedPackage -online –Verbose
-
-reg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Communications /v ConfigureChatAutoInstall /t REG_DWORD /d 0 /f
-
+If ($null -eq (Get-AppxPackage -Name MicrosoftTeams -AllUsers)) {
+    Write-Output “Microsoft Teams Personal App not present”
+}
+Else {
+    Try {
+        Write-Output “Removing Microsoft Teams Personal App”
+        If (Get-Process msteams -ErrorAction SilentlyContinue) {
+            Try {
+                Write-Output “Stopping Microsoft Teams Personal app process”
+                Stop-Process msteams -Force
+                Write-Output “Stopped”
+            }
+            catch {
+                Write-Output “Unable to stop process, trying to remove anyway”
+            }
+           
+        }
+        Get-AppxPackage -Name MicrosoftTeams -AllUsers | Remove-AppPackage -AllUsers
+        Write-Output “Microsoft Teams Personal App removed successfully”
+    }
+    catch {
+        Write-Error “Error removing Microsoft Teams Personal App”
+    }
+}
