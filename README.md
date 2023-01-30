@@ -58,7 +58,7 @@ $PSStyle.FileInfo.Directory = "`e[34m"
 
 ## Windows Terminal Settings
 
-Install Windows Terminal profile settings:
+Chocolatey - Install Windows Terminal profile settings:
 
 ```powershell
 Invoke-RestMethod -Uri https://raw.githubusercontent.com/Redningsselskapet/RS-Win11-Management/master/settings.json -OutFile (New-Item -Path $env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json -Force) 
