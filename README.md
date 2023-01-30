@@ -45,6 +45,25 @@ scoop install gitkraken
 ```
 scoop import https://raw.githubusercontent.com/Redningsselskapet/RS-Win11-Management/master/scoop-packages.json
 ```
+## Install Package with Chocolatey
+Install choco
+```
+Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('http://internal/odata/repo/ChocolateyInstall.ps1'))
+```
+Install chocolatey packages
+```powershell
+# install git
+choco install -y git
+
+# install starship
+choco install -y starship
+
+# install volta
+choco install -y volta
+
+# install nerd-fonts
+choco install -y cascadia-code-nerd-font
+```
 
 ## Powershell Settings
 ```powershell
