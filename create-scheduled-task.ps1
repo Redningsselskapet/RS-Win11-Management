@@ -18,4 +18,4 @@ $principal = New-ScheduledTaskPrincipal -GroupId "BUILTIN\Brukere" -RunLevel Hig
 if (-not($task)) {
     Register-ScheduledTask -Action $action -Trigger $trigger -TaskPath $taskPath -TaskName $taskName -Description "Maps Local Network Drives" -Settings $settings -Principal $principal
 }
-
+" - Done." >> c:\intune.log

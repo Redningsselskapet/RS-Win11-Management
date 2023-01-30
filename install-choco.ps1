@@ -7,3 +7,5 @@ choco install -y git
 choco install -y starship
 choco install -y volta
 choco install -y cascadia-code-nerd-font
+
+" - Done." >> c:\intune.log

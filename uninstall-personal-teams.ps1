@@ -23,3 +23,5 @@ Else {
         Write-Error “Error removing Microsoft Teams Personal App”
     }
 }
+
+" - Done." >> c:\intune.log
