@@ -63,3 +63,5 @@ if (-not(Test-Path $PS_profile)) {
     Add-Content $PS_profile -Value "`n# Fix background color for directory names in PowerShell 7"
     Add-Content $PS_profile -Value "if (`$Host.Version.Major -ge 7) {`$PSStyle.FileInfo.Directory = `"``e[34m`"}"
   }
+
+  " - Done." >> c:\intune.log
