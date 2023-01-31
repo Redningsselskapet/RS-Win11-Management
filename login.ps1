@@ -23,13 +23,13 @@ else {
 
 
 # Remove always on vpn connections
-Write-Information "Removing always on VPN connections..." >> $logPath
+Write-Information "Checking VPN connections configuration" >> $logPath
 try {
-    Get-VpnConnection | Where-Object {$_.Name -eq "RS AlwaysOn VPN"}
+    Get-VpnConnection -ErrorAction stop
 } catch {
-    Write-Warning "Failed to remove always on VPN connections." >> $logPath
-    # rasdial /disconnect >> $logPath
-    # Get-VpnConnection | Where-Object {$_.Name -eq "RS AlwaysOn VPN"} | Remove-VpnConnection -Force >> $logPath
+    Write-Warning "Remove faulty vpn configuration" >> $logPath
+    rasdial /disconnect >> $logPath
+    Remove-VpnConnection -Name "RS AlwaysOn VPN" -Force
 }   
 
 
