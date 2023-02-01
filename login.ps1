@@ -21,7 +21,7 @@ else {
     if (Get-Command choco -ErrorAction SilentlyContinue) { choco upgrade -y all >> $logPath }
 }
 
- # Create Symlink to profile.json
+ # Create Symlink to settings.json
  Write-Information "Setup Windows Terminal Settings link" >> $logPath
  $profile_json = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
  $profile_json_link = "$env:USERPROFILE\Documents\WindowsTerminal\settings.json"
