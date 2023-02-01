@@ -3,7 +3,7 @@
 "Running Redningsselskapet Login Script..."
 
 # Set the default location for the log file
-$logPath = "c:\temp\rs-login.log"
+$logPath = "$env:SYSTEMDISK\Windows\Temp\login.log"
 
 # Update Scoop packages
 Write-Information "Updating Scoop packages..." >> $logPath
