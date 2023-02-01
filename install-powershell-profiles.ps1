@@ -64,4 +64,12 @@ if (-not(Test-Path $PS_profile)) {
     Add-Content $PS_profile -Value "if (`$Host.Version.Major -ge 7) {`$PSStyle.FileInfo.Directory = `"``e[34m`"}"
   }
 
+  # Create Symlink to profile.json
+  $profile_json = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+  $profile_json_link = "$env:USERPROFILE\Documents\WindowsTerminal\settings.json"
+  if (-not(Test-Path $profile_json_link)) {
+    Invoke-RestMethod -Uri https://raw.githubusercontent.com/Redningsselskapet/RS-Win11-Management/master/settings.json -OutFile (New-Item -Path $profile_json_link -Force)
+    New-Item -ItemType SymbolicLink -Path $profile_json -Value $profile_json_link -Force
+  }
+
   " - Done." >> c:\intune.log
