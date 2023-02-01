@@ -21,6 +21,14 @@ else {
     if (Get-Command choco -ErrorAction SilentlyContinue) { choco upgrade -y all >> $logPath }
 }
 
+ # Create Symlink to profile.json
+ Write-Information "Setup Windows Terminal Settings link" >> $logPath
+ $profile_json = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+ $profile_json_link = "$env:USERPROFILE\Documents\WindowsTerminal\settings.json"
+ if (-not(Test-Path $profile_json_link)) {
+   Invoke-RestMethod -Uri https://raw.githubusercontent.com/Redningsselskapet/RS-Win11-Management/master/settings.json -OutFile (New-Item -Path $profile_json_link -Force)  
+ }
+ New-Item -ItemType SymbolicLink -Path $profile_json -Value $profile_json_link -Force
 
 # Remove always on vpn connections
 Write-Information "Checking VPN connections configuration" >> $logPath
