@@ -7,5 +7,6 @@ if (-not(Get-Command choco -ErrorAction SilentlyContinue)) {
 # Install Chocolatey packages
 choco install -y starship
 choco install -y cascadia-code-nerd-font
+choco install -y gsudo
 
 " - Done." >> c:\intune.log
