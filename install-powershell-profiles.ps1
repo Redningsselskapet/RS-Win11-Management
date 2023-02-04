@@ -24,7 +24,7 @@ if (-not(Test-Path $PS_profile)) {
   if (-not((Get-Content $PS_profile -Raw).Contains("(& volta completions powershell) | Out-String | Invoke-Expression"))) {
     Write-Host "Adding Volta completions to PowerShell profile"
     Add-Content $PS_profile -Value "`n# Volta completions"
-    Add-Content $PS_profile -Value "(& volta completions powershell) | Out-String | Invoke-Expression"
+    Add-Content $PS_profile -Value "if (Get-Command volta -ErrorAction SilentlyContinue){(& volta completions powershell) | Out-String | Invoke-Expression}"
   }
   
   # This only applies to PowerShell 7 and later
@@ -54,7 +54,7 @@ if (-not(Test-Path $PS_profile)) {
   if (-not((Get-Content $PS_profile -Raw).Contains("(& volta completions powershell) | Out-String | Invoke-Expression"))) {
     Write-Host "Adding Volta completions to PowerShell profile"
     Add-Content $PS_profile -Value "`n# Volta completions"
-    Add-Content $PS_profile -Value "(& volta completions powershell) | Out-String | Invoke-Expression"
+    Add-Content $PS_profile -Value "if (Get-Command volta -ErrorAction SilentlyContinue){(& volta completions powershell) | Out-String | Invoke-Expression}"
   }
   
   # This only applies to PowerShell 7 and later
