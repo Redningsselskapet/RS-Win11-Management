@@ -1,23 +1,64 @@
-Write-Host "Install Chocolatey and standard packages..." >> c:\intune.log
-# Install Chocolatey
-if (-not(Get-Command choco -ErrorAction SilentlyContinue)) {
-    Write-Host -NoNewline " - Installing starship..."
-    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-    Write-Host "Done"
+$logFile = "c:\intune.log"
+$scriptName = $MyInvocation.MyCommand.Name
+$packages = @("starship", "cascadia-code-nerd-font", "gsudo");
+
+function log {
+    param($message)
+    $msg = "{0} {1}" -f (Get-TimeStamp), "$message ($scriptName)"
+    Write-Output $msg | Out-File $logFile -Append
+    Write-Host $msg 
 }
 
-# Install Chocolatey packages
-Write-Host -NoNewline " - Installing starship..." >> c:\intune.log
-choco install -y starship
-Write-Host "Done" >> c:\intune.log
+function Get-TimeStamp {
+    return "[{0:MM/dd/yy} {0:HH:mm:ss}]" -f (Get-Date)
+}
 
-Write-Host -NoNewline " - cascadia-code-nerd-font..." >> c:\intune.log
-choco install -y cascadia-code-nerd-font
-Write-Host "Done" >> c:\intune.log
+function packageInstall {
+    param($package)
+    if (packageExists $package) {
+        log "$package is already installed"
+    }
+    else {
+        log "Installing $package..."
+        choco install $package -y --no-progress
+        log "Installed $package successfully!"
+    }
+}
+function packageExists {
+    param($package)
+    try {
+        $installed = choco list --local-only | Select-String $package
+    }
+    catch {
+        Write-Host "Failed to check if $package is installed" -ForegroundColor Red
+        Write-Host $_ -ForegroundColor Red
+        return
+    }
+    if ($installed) {
+        return $true
+    }
+    else {
+        return $false
+    }
+}
 
-Write-Host -NoNewline " - Installing gsudo..." >> c:\intune.log
-choco install -y gsudo
-Write-Host "Done" >> c:\intune.log
+# Install Chocolatey if not already installed
+if (Get-Command choco -ErrorAction SilentlyContinue) {
+    log "Chocolatey is already installed"
+}
+else {
+    log "Installing Chocolatey... " 
+    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+    log "Chocolatey installed successfully!"
+}
 
-Write-Host "Done." >> c:\intune.log
-
+foreach ($package in $packages) {
+    try {
+        packageInstall $package
+    }
+    catch {
+        log "Failed to install $package"
+        log $_
+    }
+}

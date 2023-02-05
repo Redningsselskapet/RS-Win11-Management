@@ -1,48 +1,75 @@
-Write-Host "Install Chocolatey and devtools packages..." >> c:\intune.log
-# Install Chocolatey
-if (-not(Get-Command choco -ErrorAction SilentlyContinue)) {
-    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1')) 
+$logFile = "c:\intune.log"
+$scriptName = $MyInvocation.MyCommand.Name
+$packages = @(
+    "git", 
+    "volta",
+    "vscode",
+    "kubernetes-cli",
+    "kubectx",
+    "kubens",
+    "k9s",
+    "azure-cli",
+    "lens",
+    "gitkraken"
+    );
+
+function log {
+    param($message)
+    $msg = "{0} {1}" -f (Get-TimeStamp), "$message ($scriptName)"
+    Write-Output $msg | Out-File $logFile -Append
+    Write-Host $msg 
 }
 
-# Install Chocolatey packages
-Write-Host -NoNewline " - Installing git..." >> c:\intune.log
-choco install -y git
-Write-Host "Done" >> c:\intune.log
+function Get-TimeStamp {
+    return "[{0:MM/dd/yy} {0:HH:mm:ss}]" -f (Get-Date)
+}
 
-Write-Host -NoNewline " - Installing volta..." >> c:\intune.log
-choco install -y volta 
-Write-Host "Done" >> c:\intune.log
+function packageInstall {
+    param($package)
+    if (packageExists $package) {
+        log "$package is already installed"
+    }
+    else {
+        log "Installing $package..."
+        choco install $package -y --no-progress
+        log "Installed $package successfully!"
+    }
+}
+function packageExists {
+    param($package)
+    try {
+        $installed = choco list --local-only | Select-String $package
+    }
+    catch {
+        Write-Host "Failed to check if $package is installed" -ForegroundColor Red
+        Write-Host $_ -ForegroundColor Red
+        return
+    }
+    if ($installed) {
+        return $true
+    }
+    else {
+        return $false
+    }
+}
 
-Write-Host -NoNewline " - Installing vscode..." >> c:\intune.log
-choco install -y vscode 
-Write-Host "Done" >> c:\intune.log
+# Install Chocolatey if not already installed
+if (Get-Command choco -ErrorAction SilentlyContinue) {
+    log "Chocolatey is already installed"
+}
+else {
+    log "Installing Chocolatey... " 
+    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+    log "Chocolatey installed successfully!"
+}
 
-Write-Host -NoNewline " - Installing kubernetes-cli..." >> c:\intune.log
-choco install -y kubernetes-cli 
-Write-Host "Done" >> c:\intune.log
-
-Write-Host -NoNewline " - Installing kubectx..." >> c:\intune.log
-choco install -y kubectx
-Write-Host "Done" >> c:\intune.log
-
-Write-Host -NoNewline " - Installing kubens..." >> c:\intune.log
-choco install -y kubens 
-Write-Host "Done" >> c:\intune.log
-
-Write-Host -NoNewline " - Installing k9s..." >> c:\intune.log
-choco install -y k9s
-Write-Host "Done" >> c:\intune.log
-
-Write-Host -NoNewline " - Installing azure-cli..." >> c:\intune.log
-choco install -y azure-cli 
-Write-Host "Done" >> c:\intune.log
-
-Write-Host -NoNewline " - Installing lens..." >> c:\intune.log
-choco install -y lens
-Write-Host "Done" >> c:\intune.log
-
-Write-Host -NoNewline " - Installing gitkraken..." >> c:\intune.log
-choco install -y gitkraken
-Write-Host "Done" >> c:\intune.log
-
-Write-Host "Done" >> c:\intune.log
+foreach ($package in $packages) {
+    try {
+        packageInstall $package
+    }
+    catch {
+        log "Failed to install $package"
+        log $_
+    }
+}
