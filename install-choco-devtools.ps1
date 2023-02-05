@@ -30,7 +30,7 @@ function packageInstall {
         log "$package is already installed"
     }
     else {
-        log "Installing $package..."
+        log "Start installing $package..."
         choco install $package -y --no-progress
         log "Installed $package successfully!"
     }
