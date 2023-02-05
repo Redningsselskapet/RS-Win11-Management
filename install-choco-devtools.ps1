@@ -1,7 +1,7 @@
 "Install Chocolatey and devtools packages..." >> c:\intune.log
 # Install Chocolatey
 if (-not(Get-Command choco -ErrorAction SilentlyContinue)) {
-    "Installing choco.."
+    "Installing choco.." >> c:\intune.log
     [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 }
 
