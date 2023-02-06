@@ -1,9 +1,29 @@
-"Creating scheduled task to map network drives on login..." >> c:\intune.log
 $scriptUrl = "https://raw.githubusercontent.com/Redningsselskapet/RS-Win11-Management/master/login.ps1"
 $scriptPath = "c:\login.ps1"
+$logFile = "c:\intune.log"
 
-$scriptExist = Test-Path -Path $scriptPath -PathType Leaf
-Invoke-RestMethod $scriptUrl -OutFile $scriptPath
+function log {
+    param($message)
+    $msg = "{0} {1}" -f (Get-TimeStamp), "$message ($scriptName)"
+    Write-Output $msg | Out-File $logFile -Append
+    Write-Host $msg 
+}
+
+function Get-TimeStamp {
+    return "[{0:MM/dd/yy} {0:HH:mm:ss}]" -f (Get-Date)
+}
+
+log "Creating scheduled task to map network drives on login..." 
+try {
+    log "Downloading login script..."
+    Invoke-RestMethod $scriptUrl -OutFile $scriptPath
+    log "Downloaded login script successfully!"
+} catch {
+    log "Failed to download login script"
+    log $_
+    exit 1
+}
+
 
 $taskPath = "\Redningsselskapet\"
 $taskName = "Map Network Drives"
@@ -16,6 +36,9 @@ $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries
 $principal = New-ScheduledTaskPrincipal -GroupId "BUILTIN\Brukere" -RunLevel Highest
 
 if (-not($task)) {
-    Register-ScheduledTask -Action $action -Trigger $trigger -TaskPath $taskPath -TaskName $taskName -Description "Maps Local Network Drives" -Settings $settings -Principal $principal
+    log "Creating scheduled task..."
+        Register-ScheduledTask -Action $action -Trigger $trigger -TaskPath $taskPath -TaskName $taskName -Description "Maps Local Network Drives" -Settings $settings -Principal $principal
+    log "Scheduled task created successfully!"
+} else {
+    log "Scheduled task already exists"
 }
-" - Done." >> c:\intune.log
