@@ -12,8 +12,6 @@ function Get-TimeStamp {
   return "[{0:MM/dd/yy} {0:HH:mm:ss}]" -f (Get-Date)
 }
 
-log "Generating PowerShell profiles..." 
-
 $PS_profile = "$env:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
 
 if (-not(Test-Path $PS_profile)) {
@@ -82,4 +80,4 @@ if (-not(Test-Path $PS_profile)) {
   }
   New-Item -ItemType SymbolicLink -Path $profile_json -Value $profile_json_link -Force
 
-log "Done generating PowerShell profiles."
+log "Generated PowerShell profiles"
