@@ -1,6 +1,7 @@
 $scriptUrl = "https://raw.githubusercontent.com/Redningsselskapet/RS-Win11-Management/master/login.ps1"
 $scriptPath = "c:\login.ps1"
 $logFile = "c:\intune.log"
+$scriptName = $MyInvocation.MyCommand.Name
 
 function log {
     param($message)
