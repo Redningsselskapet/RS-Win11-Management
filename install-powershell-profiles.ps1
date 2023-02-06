@@ -1,8 +1,18 @@
-"Installing PowerShell profiles..." >> c:\intune.log
+$logFile = "c:\intune.log"
+$scriptName = $MyInvocation.MyCommand.Name
 
-# Caution: This will overwrite your existing Windows Terminal settings
-# Genereate a new settings.json file with the following command:
-# Invoke-RestMethod -Uri https://raw.githubusercontent.com/Redningsselskapet/RS-Win11-Management/master/settings.json -OutFile (New-Item -Path $env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json -Force) 
+function log {
+  param($message)
+  $msg = "{0} {1}" -f (Get-TimeStamp), "$message ($scriptName)"
+  Write-Output $msg | Out-File $logFile -Append
+  Write-Host $msg 
+}
+
+function Get-TimeStamp {
+  return "[{0:MM/dd/yy} {0:HH:mm:ss}]" -f (Get-Date)
+}
+
+log "Generating PowerShell profiles..." 
 
 $PS_profile = "$env:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
 
@@ -72,4 +82,4 @@ if (-not(Test-Path $PS_profile)) {
   }
   New-Item -ItemType SymbolicLink -Path $profile_json -Value $profile_json_link -Force
 
-  " - Done." >> c:\intune.log
+log "Done generating PowerShell profiles."
