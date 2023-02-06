@@ -14,9 +14,7 @@ function Get-TimeStamp {
     return "[{0:MM/dd/yy} {0:HH:mm:ss}]" -f (Get-Date)
 }
 
-log "Creating scheduled task to map network drives on login..." 
 try {
-    log "Downloading login script..."
     Invoke-RestMethod $scriptUrl -OutFile $scriptPath
     log "Downloaded login script successfully!"
 } catch {
@@ -37,7 +35,6 @@ $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries
 $principal = New-ScheduledTaskPrincipal -GroupId "BUILTIN\Brukere" -RunLevel Highest
 
 if (-not($task)) {
-    log "Creating scheduled task..."
         Register-ScheduledTask -Action $action -Trigger $trigger -TaskPath $taskPath -TaskName $taskName -Description "Maps Local Network Drives" -Settings $settings -Principal $principal
     log "Scheduled task created successfully!"
 } else {
