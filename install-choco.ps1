@@ -42,6 +42,9 @@ function packageExists {
     }
 }
 
+# Set Chocolatey path
+$env:Path = "$env:Path;C:\ProgramData\chocolatey\bin"
+
 # Install Chocolatey if not already installed
 if (Get-Command choco -ErrorAction SilentlyContinue) {
     log "Chocolatey is already installed"
