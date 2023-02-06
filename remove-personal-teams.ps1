@@ -18,7 +18,6 @@ If ($null -eq (Get-AppxPackage -Name MicrosoftTeams -AllUsers)) {
 }
 Else {
     Try {
-        log "Removing Microsoft Teams Personal App"
         If (Get-Process msteams -ErrorAction SilentlyContinue) {
             Try {
                 log "Stopping Microsoft Teams Personal app process"
