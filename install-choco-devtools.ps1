@@ -1,8 +1,10 @@
 $logFile = "c:\intune.log"
 $scriptName = $MyInvocation.MyCommand.Name
 $packages = @(
+    "gitkraken",
     "git", 
     "volta",
+    "pyenv-win",
     "vscode",
     "kubernetes-cli",
     "kubectx",
