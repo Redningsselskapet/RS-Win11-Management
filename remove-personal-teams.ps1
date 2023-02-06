@@ -1,27 +1,39 @@
-"Removing Personal Teams..." >> c:\intune.log
+$logFile = "c:\intune.log"
+$scriptName = $MyInvocation.MyCommand.Name
+
+function log {
+    param($message)
+    $msg = "{0} {1}" -f (Get-TimeStamp), "$message ($scriptName)"
+    Write-Output $msg | Out-File $logFile -Append
+    Write-Host $msg 
+}
+
+function Get-TimeStamp {
+    return "[{0:MM/dd/yy} {0:HH:mm:ss}]" -f (Get-Date)
+}
+
+
 If ($null -eq (Get-AppxPackage -Name MicrosoftTeams -AllUsers)) {
-    Write-Output “Microsoft Teams Personal App not present”
+    log "Microsoft Teams Personal App not present"
 }
 Else {
     Try {
-        Write-Output “Removing Microsoft Teams Personal App”
+        log "Removing Microsoft Teams Personal App"
         If (Get-Process msteams -ErrorAction SilentlyContinue) {
             Try {
-                Write-Output “Stopping Microsoft Teams Personal app process”
+                log "Stopping Microsoft Teams Personal app process"
                 Stop-Process msteams -Force
-                Write-Output “Stopped”
+                log "Teams Personal app process stopped"
             }
             catch {
-                Write-Output “Unable to stop process, trying to remove anyway”
+                log "Unable to stop process, trying to remove anyway"
             }
            
         }
         Get-AppxPackage -Name MicrosoftTeams -AllUsers | Remove-AppPackage -AllUsers
-        Write-Output “Microsoft Teams Personal App removed successfully”
+        log "Microsoft Teams Personal App removed successfully"
     }
     catch {
-        Write-Error “Error removing Microsoft Teams Personal App”
+        log "Error removing Microsoft Teams Personal App"
     }
 }
-
-" - Done." >> c:\intune.log
