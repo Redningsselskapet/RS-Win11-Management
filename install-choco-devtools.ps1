@@ -9,8 +9,7 @@ $packages = @(
     "kubens",
     "k9s",
     "azure-cli",
-    "lens",
-    "gitkraken"
+    "lens"
     );
 
 function log {
