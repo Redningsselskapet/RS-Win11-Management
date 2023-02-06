@@ -16,7 +16,6 @@ function Get-TimeStamp {
     return "[{0:MM/dd/yy} {0:HH:mm:ss}]" -f (Get-Date)
 }
 
-log "Configuring OneDrive for Business..."
 try {
     if (!(Test-Path $HKLMregistryPath)) { New-Item -Path $HKLMregistryPath -Force }
     if (!(Test-Path $DiskSizeregistryPath)) { New-Item -Path $DiskSizeregistryPath -Force }
